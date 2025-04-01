@@ -1,0 +1,126 @@
+/* *** 
+
+        DROPDOWN STYLING
+
+*/
+
+.my-link {
+	background: none;
+	border: none;
+	text-decoration: none;
+	color: #000000;
+	font-family: inherit;
+	font-size: inherit;
+	cursor: pointer;
+	display: inline-flex;
+}
+
+.my-dropdown {
+	position: relative;
+}
+
+.my-dropdown.active > .my-link + .my-dropdown-menu {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+	visibility: visible;
+}
+
+/* locale icon */
+.my-dropdown:hover .locales-btn-icon {
+    fill: rgb(0, 204, 255);
+	transition: all 0.2s ease-in;
+
+}
+
+.my-dropdown.active > .my-link,
+.my-link:hover {
+	color: rgb(0, 188, 235);
+	transition: all 0.2s ease-in;
+}
+
+.my-dropdown-menu {
+	z-index: 500;
+	display: flex;
+	position: absolute;
+	top: 95%;
+	right: 0;
+	/* left: 0;   */
+	opacity: 0; 
+	visibility: hidden;
+	transform: translateY(-4px);
+	transition: opacity .25s,visibility .25s,transform .25s;
+	max-height: calc(100vh - var(55px) - var(72px, 0px));
+	border-radius: .25rem;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .5);
+	padding-inline:14px;
+	padding-top:10px;
+	background-color: rgb(255, 255, 255);
+	padding-inline: 1rem;
+	white-space: nowrap;
+
+}
+
+
+.my-dropdown-button {
+	background: none;
+	border: none;
+	text-decoration: none;
+	/* color: #777; */
+	font-family: inherit;
+	font-size: inherit;
+	cursor: pointer;
+	padding: 0;
+	display: inline-flex;
+}
+
+.my-dropdown-item {
+	padding-inline: 2rem;
+
+}
+
+.my-dropdown-links {
+	display: flex;
+	flex-direction: column;
+	gap: .25rem;
+	align-items: center;
+	padding-bottom: 6px;
+	font-size: .875rem;
+	position: relative;
+}
+
+
+
+/* locale icon svg*/
+.locales-btn-icon {
+	display: block;
+	width: 1.5rem;
+	height: 1.5rem;
+	fill: #000000;
+	pointer-events: none;
+}
+
+@media screen and (max-width: 1023px) {
+	.locales-btn-icon {
+		width: 2.3rem;
+		height: 2.3rem;
+	}
+}
+
+@media screen and (max-width: 769px) {
+	.locales-btn-icon {
+		width: 2rem;
+		height: 2rem;
+	}
+}
+
+
+.dropdown-arrow-icon {
+	display: inline-block;
+	margin-top: 5px;
+	margin-left: 0.5rem;
+	width: 11px;
+	height: 11px;
+	fill: rgb(127, 127, 127);
+	transition: fill .25s;
+} 

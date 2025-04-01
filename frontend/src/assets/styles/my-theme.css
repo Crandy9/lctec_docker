@@ -1,0 +1,25 @@
+/* 
+
+    STYLING FOR THEME
+
+
+*/
+
+/* text color and twitter x icon */
+.darkTheme {
+    fill: white;
+    color: rgb(236, 236, 236);
+}
+
+.lightTheme {
+    fill: black;
+    color: #000000;
+}
+
+.darkTheme > span {
+    background-color: rgb(236, 236, 236);
+}
+
+.lightTheme > span {
+    background-color: #000000;
+}
