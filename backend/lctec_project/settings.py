@@ -21,7 +21,8 @@ DEBUG = False
 SECURE_SSL_REDIRECT=True
 SESSION_COOKIE_SECURE=True
 CSRF_COOKIE_SECURE=True
-
+# needed for docker
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
@@ -33,12 +34,13 @@ SECRET_KEY = env('SECRET_KEY')
 # STRIPE_SK = env("STRIPESK")
 # STRIPE_DOMAIN = env("STRIPE_DOMAIN")
 
-ALLOWED_HOSTS = ['localhost', 
+ALLOWED_HOSTS = [
+                'django-backend-dev-https',
+                'localhost', 
                 '127.0.0.1',
                 'lctechnologies.local',
                 'lctechnologies.io',
                 'www.lctechnologies.io',
-                # for geodata API
                 'https://api.ip2location.io/',
                 # add sheriffcrandy digitalocean droplet reserved public ip 
                 '137.184.248.73',
@@ -117,7 +119,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8080",
     "http://localhost:8080",
-    "https://lctechnologies.local:2443",
+    "https://lctechnologies.local:443",
     "https://lctechnologies.io"
 ]
 

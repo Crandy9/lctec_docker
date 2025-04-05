@@ -1,5 +1,6 @@
 FROM python:3.11-slim
 
+
 WORKDIR /backend
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -11,8 +12,15 @@ RUN apt-get update \
 
 RUN pip install --upgrade pip
 
-COPY requirements.txt ./
+COPY ../.env ../
 
-RUN pip install -r requirements.txt
+COPY backend/requirements.txt ./
+
+RUN pip install -r requirements.txt \
+    && useradd -U lctec \
+    && install -d -m 0755 -o lctec -g lctec /backend/static
+
+USER lctec:lctec
+COPY --chown=lctec:lctec . .
 
 COPY . ./

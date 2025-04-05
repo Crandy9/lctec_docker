@@ -1,14 +1,14 @@
 services:
   django-backend-dev-https:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: ./
+      dockerfile: backend/Dockerfile
     container_name: django-backend-dev-https
     env_file:
       - ".env"
     volumes:
       - "./backend:/backend"
-      - "./backend/staticfiles:/backend/staticfiles"
+      - "./backend/staticfiles:/backend/staticfiles"     
     command: ["sh", "-c", "python manage.py collectstatic --noinput && gunicorn --bind 0.0.0.0:8000 lctec_project.wsgi:application"]      
     networks:
       - "backend"
@@ -32,9 +32,10 @@ services:
     container_name: nginx-dev-https
     ports:
       - "443:443"
+    restart: always      
     volumes:
-      - ./nginx/dev-https.conf:/etc/nginx/conf.d/default.conf
-      - ./nginx/certs:/etc/nginx/certs
+      - ./nginx/dev-https-nginx.conf:/etc/nginx/conf.d/:ro
+      - ./nginx/certs:/etc/nginx/certs/:ro
       - ./backend/staticfiles:/backend/staticfiles
       - ./frontend/dist:/frontend/dist
     depends_on:
@@ -58,7 +59,7 @@ services:
         openssl req -nodes -x509 -newkey rsa:4096 -keyout /etc/nginx/certs/lctechnologies.local.key -out /etc/nginx/certs/lctechnologies.local.crt -days 365 -subj '/C=US/ST=Idaho/L=Boise/O=lctec/OU=lctecou/CN=lctechnologies.local/emailAddress=lctechnology@protonmail.com';
       else
         echo 'SSL certificate already exists. Skipping generation.';
-      fi"
+      fi"     
 
 networks:
   backend:
