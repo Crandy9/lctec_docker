@@ -31,7 +31,7 @@
   "contact": "Contact",
   "contactBtn": "Contact Us",
   "contactmodal": {
-    "contactHeader": "Learn More About Our Services and Pricing Plans",
+    "contactHeader": "Have Questions? Send us a message.",
     "name": "Name",
     "placeholdername": "Bob Smith",
     "email": "Email",
@@ -42,7 +42,7 @@
     "softwareDevService": "Software Development Contracting",
     "otherService": "Other",
     "msgs": "Tell us a little bit about your project or business that you would like our help with, or just say hi and we will get back to you as soon as possible. Thank you!",
-    "placeholdermsgs": "Leave your message here :)",
+    "placeholdermsgs": "Leave your message here",
     "submitting": "Submitting",
     "submit": "Submit Inquiry"
   },
