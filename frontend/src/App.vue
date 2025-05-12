@@ -340,7 +340,7 @@
         </div>          
         <!-- lctec brand-->
         <div class="lctec-brand">
-          Jesus Christ is King
+          Jesus Christ is Lord
           <p class="company_link">
             &copy; 2022-2024 | 
             LC Technologies 
