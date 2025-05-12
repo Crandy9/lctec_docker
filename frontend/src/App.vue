@@ -350,8 +350,8 @@
                 href="https://lctechnologies.azurewebsites.net/" target="_blank">
               LC Technologies
               <img alt="lctec_icon" class="lctec-icon" type="image/png" src="../src/assets/images/lctec_icon_rounded.png">
-            </a> 				 -->
-            Linden Crandall
+            </a> 				 
+            Linden Crandall -->
         </div>           
       </footer>
       <div v-if="showScrollArrow" class="scroll-top-btn-container">
