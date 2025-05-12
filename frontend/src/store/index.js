@@ -8,7 +8,7 @@ export default createStore({
     theme_change: "darkTheme",
     theme: '',
     bgColorDark: 'rgb(22 32 47)',
-    bgColorLight: 'rgb(219 248 253)',
+    bgColorLight: 'rgb(245, 254, 255)',
     hamburgerBgColor: '#f2fafb',
     scrollingToEcommerce: false,
     scrollingToWebApp: false,
