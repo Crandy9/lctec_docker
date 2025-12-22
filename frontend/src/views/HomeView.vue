@@ -9,6 +9,33 @@
     <div :class=$store.state.theme_change ref="offering">
       <h1 class="service-header">{{$t('whatweofferTitle')}}</h1>
     </div>
+      <!-- webapp section -->
+    <div class="service-item webapp" :class=$store.state.theme_change ref="webapp">
+      <h1 class="service">{{$t('web_designTitle')}}
+        <!-- <i :class=$store.state.theme_change class="fa fa-globe" style="color: rgb(0, 140, 255);"></i> -->
+          <div :class=$store.state.theme_change class="globe">
+            <div class="lat"></div>
+            <div class="lat"></div>
+            <div class="lat"></div>
+            <div class="lat"></div>
+            <div class="lat"></div>
+            <div class="lon"></div>
+            <div class="lon"></div>
+            <div class="lon"></div>
+            <div class="lon"></div>
+            <div class="lon"></div>
+            <div class="lon"></div>
+          </div>
+      </h1> 
+      <div class="service-about">
+        <span>
+          {{$t('web_designAbout')}}
+        </span>
+        <p style="padding-top: 1rem;">
+          {{$t('web_designStartingPrice')}}
+        </p>
+      </div>
+    </div>    
     <!-- eCommerce section -->
     <div class="service-item" :class=$store.state.theme_change ref="ecommerce">
       <h1 class="service">{{$t('eCommerceTitle')}}
@@ -22,20 +49,6 @@
           {{$t('eCommerceStartingPrice')}}
         </p>
       </div>
-    </div>
-      <!-- webapp section -->
-    <div class="service-item" :class=$store.state.theme_change ref="webapp">
-      <h1 class="service">{{$t('web_designTitle')}}
-        <i :class=$store.state.theme_change class="fa fa-globe" style="color: rgb(0, 140, 255);"></i>
-      </h1> 
-      <div class="service-about">
-        <span>
-          {{$t('web_designAbout')}}
-        </span>
-        <p style="padding-top: 1rem;">
-          {{$t('web_designStartingPrice')}}
-        </p>
-    </div>
     </div>
       <!-- Software Development section -->
     <div class="service-item" :class=$store.state.theme_change ref="gensoft">
