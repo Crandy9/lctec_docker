@@ -41,25 +41,30 @@ services:
       - /var/www/certbot:/var/www/certbot
       - ./backend/staticfiles:/backend/staticfiles
       - ./frontend/dist:/frontend/dist
+      - /var/www/sites/webp-converter/webpconverter/backend/staticfiles:/backend-webp/staticfiles
+      - /var/www/sites/webp-converter/webpconverter/backend/media:/backend-webp/media
     depends_on:
       - django-backend-prod
       - vuejs-frontend-prod
       - certbot
     networks:
       - backend
+      - shared-proxy
 
   certbot:
     image: certbot/certbot:latest
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - /var/www/certbot:/var/www/certbot
-    # command: certonly --webroot -w /var/www/certbot --keep-until-expiring --email ${DOCKER_CERTBOT_EMAIL} -d ${DOCKER_CERTBOT_DOMAIN} --agree-tos --dry-run
-    command: certonly --webroot -w /var/www/certbot --keep-until-expiring --email ${DOCKER_CERTBOT_EMAIL} -d ${DOCKER_CERTBOT_DOMAIN} --agree-tos
+    # command: certonly --webroot -w /var/www/certbot --keep-until-expiring --email ${DOCKER_CERTBOT_EMAIL} -d ${DOCKER_CERTBOT_DOMAIN_1} -d ${DOCKER_CERTBOT_DOMAIN_2} --agree-tos --dry-run
+    command: certonly --webroot -w /var/www/certbot --keep-until-expiring --email ${DOCKER_CERTBOT_EMAIL} -d ${DOCKER_CERTBOT_DOMAIN_1} -d ${DOCKER_CERTBOT_DOMAIN_2} --agree-tos
 
 
 networks:
   backend:
     driver: bridge
+  shared-proxy:
+    external: true    
 
 volumes:
   node_modules:
