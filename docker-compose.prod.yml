@@ -1,54 +1,38 @@
 services:
-  django-backend-prod:
-    build:
-      context: ./
-      dockerfile: backend/Dockerfile
-    container_name: django-backend-prod
+  django-backend-prod-lctec:
+    image: lctec/lctec-backend:${IMAGE_TAG}
+    container_name: django-backend-prod-lctec
     env_file:
       - ".env"
     volumes:
       - "./backend:/backend"
-      - "./backend/staticfiles:/backend/staticfiles"     
+      - "./backend/staticfiles:/backend/staticfiles"   
+      - "./backend/backend_logger:/backend/backend_logger"       
     # for DBs command: ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate gunicorn --bind 0.0.0.0:8000 lctec_project.wsgi:application"]      
     command: ["sh", "-c", "python manage.py collectstatic --noinput && gunicorn --bind 0.0.0.0:8000 lctec_project.wsgi:application"]      
     networks:
-      - "backend"
+      - "backend_network_lctec"
 
-  vuejs-frontend-prod:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: vuejs-frontend-prod
-    env_file:
-      - "./frontend/.env"
-    volumes:
-      - "./frontend:/frontend"
-      - "node_modules:/frontend/node_modules"
-    command: ["sh", "-c", "npm run build"]
-    depends_on:
-      - django-backend-prod
-
-  nginx-prod:
-    image: nginx:latest
-    container_name: nginx-prod
+  nginx-prod-lctec:
+    image: lctec/lctec-frontend:${IMAGE_TAG}
+    container_name: nginx-prod-lctec
     restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"    
     volumes:
       - ./nginx/prod-nginx.conf:/etc/nginx/nginx.conf
-      - /etc/letsencrypt:/etc/letsencrypt      
+      - /etc/letsencrypt:/etc/letsencrypt
       - /var/www/certbot:/var/www/certbot
       - ./backend/staticfiles:/backend/staticfiles
-      - ./frontend/dist:/frontend/dist
-      - /var/www/sites/webp-converter/webpconverter/backend/staticfiles:/backend-webp/staticfiles
-      - /var/www/sites/webp-converter/webpconverter/backend/media:/backend-webp/media
+      - /var/www/sites/webp-converter/webp-converter/frontend/dist:/frontend-webp/dist
+      - /var/www/sites/webp-converter/webp-converter/backend/staticfiles:/backend-webp/staticfiles
+      - /var/www/sites/webp-converter/webp-converter/backend/media:/backend-webp/media
     depends_on:
-      - django-backend-prod
-      - vuejs-frontend-prod
+      - django-backend-prod-lctec
       - certbot
     networks:
-      - backend
+      - "backend_network_lctec"
       - shared-proxy
 
   certbot:
@@ -61,10 +45,11 @@ services:
 
 
 networks:
-  backend:
+  backend_network_lctec:
     driver: bridge
   shared-proxy:
-    external: true    
+    name: shared-proxy
+    driver: bridge    
 
 volumes:
   node_modules:
