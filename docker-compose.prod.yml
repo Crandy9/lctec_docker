@@ -11,7 +11,7 @@ services:
     # for DBs command: ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate gunicorn --bind 0.0.0.0:8000 lctec_project.wsgi:application"]      
     command: ["sh", "-c", "python manage.py collectstatic --noinput && gunicorn --bind 0.0.0.0:8000 lctec_project.wsgi:application"]      
     networks:
-      - "backend_network_lctec"
+      - backend_network_lctec
 
   nginx-prod-lctec:
     image: lctec/lctec-frontend:${IMAGE_TAG}
@@ -32,7 +32,7 @@ services:
       - django-backend-prod-lctec
       - certbot
     networks:
-      - "backend_network_lctec"
+      - backend_network_lctec
       - shared-proxy
 
   certbot:
